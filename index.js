@@ -30,7 +30,6 @@ app.post('/form', (req, res) => {
     req.check('username').notEmpty().withMessage('Name is required');
     req.check('gender').notEmpty().withMessage('Gender is required');
     req.check('password').notEmpty().withMessage('Password is required');
-    req.check('agreement').isBoolean().withMessage('should be a boolean');
     const errors = req.validationErrors();
     if (errors) {
         res.render('addUser', {
