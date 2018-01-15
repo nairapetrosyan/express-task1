@@ -29,7 +29,7 @@ app.get('/result', (req, res) =>{
 app.post('/form', (req, res) => {
     req.check('username').notEmpty().withMessage('Name is required');
     req.check('gender').notEmpty().withMessage('Gender is required');
-    req.check('password').notEmpty().withMessage('Password is required');
+    req.check('password').notEmpty().withMessage('Password is required').matches('.{8,}').withMessage('Use a valid password(min 8 chars)');
     const errors = req.validationErrors();
     if (errors) {
         res.render('addUser', {
@@ -63,8 +63,8 @@ app.get('/api/time', (req, res)=>{
 app.post('/api/users', (req, res) =>{
     req.check('username').notEmpty().withMessage('Name is required');
     req.check('gender').notEmpty().withMessage('Gender is required');
-    req.check('password').notEmpty().withMessage('Password is required').matches('(?=.*\d).{8,}').withMessage('Use a valid password(8 chars)');
-    req.check('agreement').isBoolean().withMessage('should be a boolean');
+    req.check('password').notEmpty().withMessage('Password is required').matches('.{8,}').withMessage('Use a valid password( min 8 chars)');
+    req.check('agreement').isBoolean().withMessage('Agreement should be a boolean');
     const errors = req.validationErrors();
     if (errors) {
         res.send({
