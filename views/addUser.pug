@@ -1,0 +1,25 @@
+extends layout
+block title
+    title Adduser
+block content
+    div
+        form(method="post", action="/form")
+            if errors
+                div
+                    for error in errors
+                        p(style="color: red;")= error.msg
+            div
+                label(for="username") Username
+                input(type="text" name="username" id="username")
+            div
+                label(for="password") Password
+                input(type="text" name="password" id="password")
+            div
+                label(for="gender") Gender
+                input(type="text" name="gender" id="gender")
+            div
+                label(for="agreement") Agree With
+                input(type="checkbox" name="agreewith" id="agreement")
+            div
+                button Add
+
